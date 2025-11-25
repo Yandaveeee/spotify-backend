@@ -1,16 +1,17 @@
 import express from 'express';
-import { addSong, listSong, removeSong, updateLyrics } from '../controllers/songController.js';
-import upload from '../middleware/multer.js';
+import { addSong, listSong, removeSong, updateLyrics } from '../controllers/songController.js'
+import upload from '../middleware/multer.js'
 
 const songRouter = express.Router();
 
 songRouter.post('/add', upload.fields([
-    { name: 'image', maxCount: 1 },
-    { name: 'audio', maxCount: 1 }
+    { name: 'image', maxCount: 1 }, 
+    { name: 'audio', maxCount: 1 },
+    { name: 'video', maxCount: 1 }  // Add this line
 ]), addSong);
 
 songRouter.get('/list', listSong);
 songRouter.post('/remove', removeSong);
-songRouter.post('/update-lyrics', updateLyrics); // New route for updating lyrics
+songRouter.post('/update-lyrics', updateLyrics);
 
 export default songRouter;
